@@ -79,7 +79,7 @@ export { default as savetube } from "./download/youtube15.js";
  */
 
 export { getBestLyrics } from "./search/lyrics.js";
-export { spotifyxv, fspotifyxv } from "./search/spotify.js";
+export { spotifyxv, fspotifyxv, spotifymeta } from "./search/spotify.js";
 export { soundcloudSearch, fsoundcloudSearch } from "./search/soundcloud.js";
 export { appleMusicSearch, fappleMusicSearch } from "./search/applemusic.js";
 export { ytSearch, fytSearch } from "./search/youtube.js";
