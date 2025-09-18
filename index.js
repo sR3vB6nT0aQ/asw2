@@ -20,6 +20,7 @@ export { t2v } from "./ai/txt2video.js";
 export { venice } from "./ai/venice.js";
 export { kimi } from "./ai/kimi.js";
 export { deepseek } from "./ai/deepseek.js";
+export { gemini } from "./ai/gemini.js";
 
 /* ❢◥ ▬▬▬▬▬ D O W N L O A D ▬▬▬▬▬ ◤❢ */
 /**
@@ -49,6 +50,7 @@ export { spotiDownV3 } from "./download/spotify3.js";
 export { spdl5 } from "./download/spotify4.js";
 export { spotifyDL } from "./download/spotify5.js";
 export { spotidl } from "./download/spotify6.js";
+export { spotify7 } from "./download/spotify7.js";
 export { threadsScraper } from "./download/threads.js";
 export { threadsImg } from "./download/threads2.js";
 export { tiktok } from "./download/tiktok.js";
@@ -118,6 +120,7 @@ export { humanize } from "./tools/texthumanize.js";
 export { extractIdeas } from "./tools/youtubeideas.js";
 export { enhancePrompt } from "./tools/enhanceprompt.js";
 export { describeImage } from "./tools/imagedescript.js";
+export { nsfw } from "./tools/nsfw.js";
 
 /* ❢◥ ▬▬▬▬▬ E C O N ▬▬▬▬▬ ◤❢ */
 /**
