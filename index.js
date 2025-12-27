@@ -138,20 +138,3 @@ export { xnxxsearch, xnxxdl } from "./nsfw/xnxx.js";
 export { xvideossearch, xvideosdl } from "./nsfw/xvideos.js";
 export { phdl } from "./nsfw/pornhub.js";
 
-/* ❢◥ ▬▬▬▬▬ B O T ▬▬▬▬▬ ◤❢ */
-/**
- * Binarios Extras
- */
-
-export {
-  sendButtons,
-  sendInteractiveMessage,
-  sendImageWithInteractive,
-  getButtonType,
-  getButtonArgs,
-  InteractiveValidationError,
-  validateAuthoringButtons,
-  validateInteractiveMessageContent,
-  validateSendButtonsPayload,
-  validateSendInteractiveMessagePayload
-} from './bot/index.js';
