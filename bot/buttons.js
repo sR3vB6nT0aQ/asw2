@@ -807,9 +807,106 @@ async function sendInteractiveButtonsBasic(sock, jid, data = {}, options = {}) {
   return sendInteractiveMessage(sock, jid, payload, options);
 }
 
+/**
+ * Envía una imagen con texto y cualquier tipo de interactivo (botones, lista, CTA, etc.)
+ * @param {object} sock - Socket de Baileys
+ * @param {string} jid - JID destino
+ * @param {object} opts - Opciones
+ * @param {Buffer|string} opts.image - Imagen (Buffer o URL/base64)
+ * @param {string} [opts.caption] - Texto debajo de la imagen
+ * @param {string} [opts.footer] - Footer
+ * @param {string} [opts.title] - Título del mensaje (solo para listas o botones)
+ * @param {Array} [opts.buttons] - Botones (quick_reply, cta_url, etc.)
+ * @param {Array} [opts.sections] - Secciones para lista (si usas lista)
+ * @param {string} [opts.listType] - 'single_select' o 'multiple_select' (solo para listas)
+ * @param {object} [sendOpts] - Opciones extra de envío
+ * @returns {Promise<object>} - Mensaje enviado
+ */
+async function sendImageWithInteractive(sock, jid, opts = {}, sendOpts = {}) {
+  if (!sock) throw new Error('Socket es requerido');
+  
+  const {
+    image,
+    caption = '',
+    footer = '',
+    title = '',
+    buttons = [],
+    sections = [],
+    listType = 'single_select'
+  } = opts;
+
+  if (!image) throw new Error('Imagen es requerida');
+
+  const isList = Array.isArray(sections) && sections.length > 0;
+  const isButtons = Array.isArray(buttons) && buttons.length > 0;
+
+  if (!isList && !isButtons) {
+    throw new Error('Debes proporcionar botones o secciones de lista');
+  }
+
+  // Construir imageMessage
+  const imageMessage = {
+    image: image,
+    caption: caption,
+    jpegThumbnail: image.toString('base64').slice(0, 100)
+  };
+
+  let messageContent = {};
+
+  if (isList) {
+    // ✅ MODO LISTA
+    const listMessage = {
+      title: title,
+      description: caption,
+      footerText: footer,
+      buttonText: 'Selecciona una opción',
+      sections: sections.map((sec, idx) => ({
+        title: sec.title || `Sección ${idx + 1}`,
+        rows: sec.rows.map((row, i) => ({
+          title: row.title,
+          rowId: row.rowId || `row_${idx}_${i}`,
+          description: row.description || ''
+        }))
+      }))
+    };
+
+    messageContent = {
+      imageMessage,
+      listMessage
+    };
+  } else {
+    // ✅ MODO BOTONES (CTA, quick_reply, etc.)
+    const { cleaned, errors } = validateAuthoringButtons(buttons);
+    if (errors.length) throw new Error(`Botones inválidos: ${errors.join(', ')}`);
+
+    const interactiveButtons = buildInteractiveButtons(cleaned);
+
+    const interactiveMessage = {
+      header: {
+        hasMediaAttachment: true,
+        imageMessage
+      },
+      body: { text: caption },
+      footer: { text: footer },
+      nativeFlowMessage: {
+        buttons: interactiveButtons.map(btn => ({
+          name: btn.name || 'quick_reply',
+          buttonParamsJson: btn.buttonParamsJson
+        }))
+      }
+    };
+
+    messageContent = { interactiveMessage };
+  }
+
+  // Enviar usando tu función existente
+  return sendInteractiveMessage(sock, jid, messageContent, sendOpts);
+}
+
 module.exports = { 
   sendButtons: sendInteractiveButtonsBasic,
   sendInteractiveMessage,
+  sendImageWithInteractive: sendImageWithInteractive,
   getButtonType,
   getButtonArgs,
   InteractiveValidationError,
