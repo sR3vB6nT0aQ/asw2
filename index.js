@@ -77,7 +77,7 @@ export { default as savetube } from "./download/youtube15.js";
 
 /* ❢◥ ▬▬▬▬▬ S E A R C H ▬▬▬▬▬ ◤❢ */
 /**
- * Funciones de búsqueda y letras
+ * Funciones de búsqueda o exploracion
  */
 
 export { getBestLyrics } from "./search/lyrics.js";
@@ -93,7 +93,7 @@ export { searchncs, featuredncs, ncsDownload } from "./search/ncs.js";
 
 /* ❢◥ ▬▬▬▬▬ U T I L S ▬▬▬▬▬ ◤❢ */
 /**
- * Utilidades generales
+ * Utilidades generales para AwiTa
  */
 
 export { isTooLarge } from "./tools/bot-utils.js";
@@ -131,9 +131,27 @@ export { chamba, getTemporada } from "./econ/bot-data.js";
 
 /* ❢◥ ▬▬▬▬▬ N S F W ▬▬▬▬▬ ◤❢ */
 /**
- * Contenido NSFW
+ * Descarga de contenido NSFW
  */
 
 export { xnxxsearch, xnxxdl } from "./nsfw/xnxx.js";
 export { xvideossearch, xvideosdl } from "./nsfw/xvideos.js";
 export { phdl } from "./nsfw/pornhub.js";
+
+/* ❢◥ ▬▬▬▬▬ B O T ▬▬▬▬▬ ◤❢ */
+/**
+ * Binarios Extras
+ */
+
+export {
+  sendButtons,
+  sendInteractiveMessage,
+  sendImageWithInteractive,
+  getButtonType,
+  getButtonArgs,
+  InteractiveValidationError,
+  validateAuthoringButtons,
+  validateInteractiveMessageContent,
+  validateSendButtonsPayload,
+  validateSendInteractiveMessagePayload
+} from './bot/buttons.js';
