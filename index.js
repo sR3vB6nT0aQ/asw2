@@ -154,4 +154,4 @@ export {
   validateInteractiveMessageContent,
   validateSendButtonsPayload,
   validateSendInteractiveMessagePayload
-} from './bot/buttons.js';
+} from './bot/index.js';
