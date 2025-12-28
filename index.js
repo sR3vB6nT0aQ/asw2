@@ -56,6 +56,7 @@ export { threadsImg } from "./download/threads2.js";
 export { tiktok } from "./download/tiktok.js";
 export { tiktok2 } from "./download/tiktok2.js";
 export { tiktok3 } from "./download/tiktok3.js";
+export { tiktok4 } from './download/tiktok4.js'; //new
 export { twitter } from "./download/twitter.js";
 export { twitter2 } from "./download/twitter2.js";
 export { twitter3 } from "./download/twitter3.js";
@@ -137,4 +138,3 @@ export { chamba, getTemporada } from "./econ/bot-data.js";
 export { xnxxsearch, xnxxdl } from "./nsfw/xnxx.js";
 export { xvideossearch, xvideosdl } from "./nsfw/xvideos.js";
 export { phdl } from "./nsfw/pornhub.js";
-
